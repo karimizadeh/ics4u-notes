@@ -5,3 +5,7 @@
 [](lessons/review.md)
 [](lessons/recursion.md)
 [](lessons/files.md)
+[](lessons/algorithms.md)
+[](lessons/algorithms_searching.md)
+[](lessons/algorithms_sorting.md)
+[](lessons/oop.md)
