@@ -79,7 +79,7 @@ countdown(0)
 When ```n == 0```, the function stops called itself.
 
 ## Tracing Recursive Calls
-When a recursive function runs, Python has to remember each unfinished function call
+When a recursive function runs, Python places each ```call``` onto the ```call stack```. The ```call stack``` has to remember each unfinished function calls.
 
 example:
 
@@ -115,7 +115,13 @@ The function stops when ```n == 0```.
 The Countdown example used recursion to print values but recursive functions can also return values.
 
 ```python
+def sum_to(n):
+  if n == 1: #Base Case
+    return 1
+  else:
+    return n + sum_to(n - 1) #Recursive Case
 
+print(sum_to(5)) #Initial Function Call
 ```
 
 Output:
@@ -139,9 +145,78 @@ sum_to(5)
 ```
 
 ## Recursion with Strings
+Recursion is not only for numbers.
+
+```python
+def print_letters(word):
+  if word == "": #Base Case
+    return
+  else:
+    print(word[0])
+    print_letters(word[1:]) #Recursive Case
+
+print_letters("cat") #Initial Function Call
+```
+Output
+```
+c
+a
+t
+```
+### What is happening?
+```python
+print_letters("cat")
+print_letters("at")
+print_letters("t")
+print_letters("")
+```
 
 ## Recursion vs Loops
+Many recursive problems can also be solved with loops. 
 
+### Loop version
+```python
+def sum_to(n):
+  total = 0
+  for i in range(1, n + 1):
+    total += i
+  return total
 
+print(sum_to(5))
+```
+### Recursive version
+```python
+def sum_to(n):
+  if n == 1:
+    return 1
+  else:
+    return n + sum_to(n - 1)
 
+print(sum_to(5))
+```
+Both versions will return ```15```.
 
+So why would we use recursion? Well, recursion is useful when a problem naturally breaks into smaller versions of itself.
+
+## How to write a Recursive Function
+
+### Step 1: find the base case
+You need to find the smallest/easiest version of the problem that does not need recursion.
+
+### Step 2: decide how the problem gets smaller
+A deduction of some sort that gets you closer to the base case.
+
+Examples:
+```python
+n - 1
+words[1:]
+```
+
+### Step 3: call the function again
+Once the base case has been established, you need to set the recursion case so the function calls itself using the smaller problem.
+
+### Step 4: combine the result
+What are you going to do with the result from the smaller problem? 
+```python
+return reverse_string(word[1:]) + word[0]
+```
