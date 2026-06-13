@@ -43,7 +43,7 @@ This code has no obvious errors. It will run perfectly fine, however, this funct
 -3
 ...
 ```
-The function keeps calling itself because it has no Base Case. Eventually, Python will stop the program and give an error: ``` RecursionError: maximum recursion depth exceeded```
+The function keeps calling itself because it has no Base Case. Eventually, Python will stop the program and give an error: `RecursionError: maximum recursion depth exceeded`
 
 ```python
 def countdown(n):
@@ -66,7 +66,7 @@ Blast off!
 ```
 
 ### What is happening?
-The function starts with ```n = 5``` and each time the function runs, it prints the current number and then calls itself with a smaller number:
+The function starts with `n = 5` and each time the function runs, it prints the current number and then calls itself with a smaller number:
 
 ```python
 countdown(5)
@@ -77,11 +77,11 @@ countdown(1)
 countdown(0)
 ```
 
-When ```n == 0```, the function stops called itself.
+When `n == 0`, the function stops called itself.
 
 ## Tracing Recursive Calls
-When a recursive function runs, Python places each ```call``` onto the ```call stack```. The ```call stack``` has to remember each unfinished function calls.
-TLDR: The call stack keeps track of functions that are currently running but not finished yet. It follows LIFO (Last In, First Out).
+When a recursive function runs, Python places each `call` onto the `call stack`. The `call stack` has to remember each unfinished function calls.
+TLDR: The call stack keeps track of functions that are currently running but not finished yet. It follows `LIFO` (Last In, First Out).
 
 example:
 
@@ -111,7 +111,7 @@ Hi
 Hi
 Hi
 ```
-The function stops when ```n == 0```.
+The function stops when `n == 0`.
 
 ## Recursion with Return Values
 The Countdown example used recursion to print values but recursive functions can also return values.
@@ -196,7 +196,7 @@ def sum_to(n):
 
 print(sum_to(5))
 ```
-Both versions will return ```15```.
+Both versions will return `15`.
 
 So why would we use recursion? Well, recursion is useful when a problem naturally breaks into smaller versions of itself.
 
