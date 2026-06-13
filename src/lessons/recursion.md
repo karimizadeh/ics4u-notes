@@ -218,5 +218,5 @@ Once the base case has been established, you need to set the recursion case so t
 ### Step 4: combine the result
 What are you going to do with the result from the smaller problem? 
 ```python
-return reverse_string(word[1:]) + word[0]
+return n + sum_to(n - 1)
 ```
