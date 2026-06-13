@@ -3,10 +3,11 @@
 ## What is Recursion?
 To put it simply, recursion is when a function calls itself. It is a technique that solves a problem by breaking it into smaller versions of the same problem.
 
-For example:
-```
+Recursion is like asking the next person to solve a smaller version of the same problem, until someone reaches the easiest possible case.
 
-```
+or
+
+To clean a stack of plates, you clean the top plate, then clean the rest of the stack.
 
 ## How Recursion Works
 * Base Case: the condition that stops the recursion. Without a Base Case, the function would call itself indefinitely, leading to a stack overflow (i.e., running out of memory).
@@ -80,6 +81,7 @@ When ```n == 0```, the function stops called itself.
 
 ## Tracing Recursive Calls
 When a recursive function runs, Python places each ```call``` onto the ```call stack```. The ```call stack``` has to remember each unfinished function calls.
+TLDR: The call stack keeps track of functions that are currently running but not finished yet. It follows LIFO (Last In, First Out).
 
 example:
 
