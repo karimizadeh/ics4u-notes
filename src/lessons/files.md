@@ -11,7 +11,6 @@ File handling is used in many real applications, including:
 * writing logs or reports
 * processing large amounts of text
 
-
 Without files, a program forgets everything when it stops running.
 
 For example, this program stores a name in a variable:
@@ -20,11 +19,9 @@ For example, this program stores a name in a variable:
 name = "Marie"
 print(name)
 ```
-
 Once the program ends, the value of `name` is gone. If we want to save the name for later, we need to write it to a file.
 
 Files help programs move from being temporary to being more realistic and useful.
-
 
 
 ## File Names and File Paths
@@ -36,7 +33,6 @@ students.txt
 scores.csv
 settings.txt
 ```
-
 A **file path** tells Python where to find the file.
 
 If the file is in the same folder as your Python program, you can usually just use the file name:
@@ -46,41 +42,52 @@ open("students.txt", "r")
 ```
 
 If the file is inside another folder, you need to include the folder name:
-
 ```python
 open("data/students.txt", "r")
 ```
 
 A common beginner mistake is trying to open a file that is not in the same folder as the Python file.
 
+## Relative and Absolute Paths
 
+A **relative path** starts from the folder where your Python program is running.
+
+```python
+open("data/students.txt", "r")
+```
+An absolute path gives the full location of the file on the computer.
+
+Example on Windows:
+```python
+open("C:/Users/Student/Documents/students.txt", "r")
+```
+Example on Mac:
+```python
+open("/Users/student/Documents/students.txt", "r")
+```
+
+For most beginner programs, it is easier to keep the data file in the same folder as the Python file.
 
 ## Opening a File
 
 Before Python can read from or write to a file, the file must be opened.
 
 The basic syntax is:
-
 ```python
 file = open("filename", "mode")
 ```
 
 Example:
-
 ```python
 file = open("myfile.txt", "r")
 ```
 
 In this example:
-
 * `"myfile.txt"` is the file name.
 * `"r"` is the mode.
 * `file` is the variable that lets us work with the opened file.
 
-
-
 ## Common File Modes
-
 | Mode | Name | What it does | Important warning |
 |---|---|---|---|
 | `"r"` | Read | Opens a file for reading. | The file must already exist. |
@@ -93,20 +100,16 @@ In this example:
 This is one of the most important ideas in file handling.
 
 Using `"w"` mode erases the old file content:
-
 ```python
 file = open("notes.txt", "w")
 ```
 
 Using `"a"` mode keeps the old content and adds new content to the end:
-
 ```python
 file = open("notes.txt", "a")
 ```
 
 Use `"w"` when you want to replace the file. Use `"a"` when you want to add to the file.
-
-
 
 ## Reading an Entire File
 
@@ -131,7 +134,6 @@ file.close()
 `file.read()` reads the whole file at once. This is simple and useful for small files. For larger files, reading line by line is often better.
 
 
-
 ## Reading a File Line by Line
 
 Sometimes you do not want the entire file at once. You may want to process one line at a time.
@@ -143,6 +145,24 @@ for line in file:
     print(line.strip())
 
 file.close()
+```
+
+## Other Ways to Read a File
+
+Python gives you a few ways to read file content.
+
+| Method | What it does |
+|---|---|
+| `read()` | Reads the entire file as one string. |
+| `readline()` | Reads one line from the file. |
+| `readlines()` | Reads all lines into a list. |
+
+Example:
+
+```python
+with open("example.txt", "r") as file:
+    first_line = file.readline()
+    print(first_line.strip())
 ```
 
 ### Why Use `strip()`?
@@ -170,9 +190,7 @@ The `strip()` method removes extra whitespace from the beginning and end of a st
 ```python
 line.strip()
 ```
-
 This makes the output cleaner.
-
 
 
 ## Writing to a File
@@ -224,8 +242,6 @@ Hello
 World
 ```
 
-
-
 ## Reading Back What You Wrote
 
 A common pattern is to write data to a file, close it, then open it again to read the data back.
@@ -244,8 +260,6 @@ file.close()
 
 This helps confirm that the file was written correctly.
 
-
-
 ## Appending to a File
 
 Appending means adding new content to the end of a file without deleting what is already there.
@@ -255,7 +269,6 @@ file = open("journal.txt", "a")
 file.write("Today I learned about file handling.\n")
 file.close()
 ```
-
 If the file already has content, the new line is added at the end.
 
 ### Example: Appending Multiple Lines
@@ -278,8 +291,6 @@ for line in file:
 file.close()
 ```
 
-
-
 ## The Problem with Forgetting to Close a File
 
 When you open a file, the computer reserves resources for it. If you forget to close the file, the program may still work sometimes, but it is not good practice.
@@ -291,8 +302,6 @@ Forgetting to close files can cause problems such as:
 * confusing bugs
 
 This is why Python programmers usually use the `with` statement.
-
-
 
 ## Better Practice: Using `with open(...)`
 
@@ -371,12 +380,13 @@ You can read it into a list like this:
 ```python
 names = []
 
-with open("names.txt", "r") as file:
+with open("names.txt", "r", encoding="utf-8") as file:
     for line in file:
         names.append(line.strip())
 
 print(names)
 ```
+You may also see files opened with `encoding="utf-8"`. This tells Python how to read text characters. It helps avoid errors when files contain special characters.
 
 Output:
 

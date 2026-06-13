@@ -10,7 +10,7 @@ or
 To clean a stack of plates, you clean the top plate, then clean the rest of the stack.
 
 ## How Recursion Works
-* Base Case: the condition that stops the recursion. Without a Base Case, the function would call itself indefinitely, leading to a stack overflow (i.e., running out of memory).
+* Base Case: the condition that stops the recursion. Without a base case, the function may keep calling itself until Python stops the program with a `RecursionError`.
 * Recursive Case: this is where the function calls itself with a smaller or simpler version of the problem. Moving closer to the Base Case.
 
 ## Important Considerations
@@ -79,9 +79,9 @@ countdown(0)
 
 When `n == 0`, the function stops called itself.
 
-## Tracing Recursive Calls
+## Tracing Recursive Calls (Call Stack)
 When a recursive function runs, Python places each `call` onto the `call stack`. The `call stack` has to remember each unfinished function calls.
-TLDR: The call stack keeps track of functions that are currently running but not finished yet. It follows `LIFO` (Last In, First Out).
+TLDR: The call stack keeps track of functions that are currently running but not finished yet. 
 
 example:
 
@@ -112,6 +112,48 @@ Hi
 Hi
 ```
 The function stops when `n == 0`.
+
+The `call stack` follows `LIFO` (Last In, First Out). LIFO is like undoing your steps. The last thing you did is the first thing you go back to.
+
+```python
+def count(n):
+  if n == 0:
+    return
+
+  print("Before:", n)
+  count(n - 1)
+  print("After:", n)
+
+count(3)
+```
+
+Output:
+```
+Before: 3
+Before: 2
+Before: 1
+After: 1
+After: 2
+After: 3
+```
+The function calls are added to the stack like this:
+```
+Top of stack
+------------
+count(0)
+count(1)
+count(2)
+count(3)
+------------
+Bottom of stack
+```
+
+`count(0)` was the last call added, so it finishes first.
+
+Then Python goes back to `count(1)`, then `count(2)`, then `count(3)`.
+
+This is why recursion often feels like it goes “down” first, then comes back “up.”
+
 
 ## Recursion with Return Values
 The Countdown example used recursion to print values but recursive functions can also return values.
@@ -206,7 +248,7 @@ So why would we use recursion? Well, recursion is useful when a problem naturall
 You need to find the smallest/easiest version of the problem that does not need recursion.
 
 ### Step 2: decide how the problem gets smaller
-A deduction of some sort that gets you closer to the base case.
+A reduction of some sort that gets you closer to the base case.
 
 Examples:
 ```python
@@ -272,3 +314,44 @@ def fibonacci(n):
 print(fibonacci(6)) #Initial Function Call
 ```
 Output: `8`
+
+## Common Mistakes
+
+### Mistake 1: No Base Case
+```python
+def countdown(n):
+  print(n)
+  countdown(n - 1)
+```
+This function never stops because there is no base case.
+
+### Mistake 2: Moving Away from the Base Case
+```python
+def countdown(n):
+  if n == 0:
+    return
+
+  print(n)
+  countdown(n + 1)
+```
+This function has a base case, but it never reaches it because n keeps getting larger.
+
+### Mistake 3: Forgetting to Return
+
+Incorrect:
+```python
+def factorial(n):
+  if n == 0:
+    return 1
+
+  n * factorial(n - 1)
+```
+Correct:
+```python
+def factorial(n):
+  if n == 0:
+    return 1
+
+  return n * factorial(n - 1)
+```
+If a recursive function is calculating something, the recursive result usually needs to be returned.
