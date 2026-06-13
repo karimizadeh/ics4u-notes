@@ -222,3 +222,53 @@ What are you going to do with the result from the smaller problem?
 ```python
 return n + sum_to(n - 1)
 ```
+
+## Other Examples of Recursion
+
+### Sum of a List
+```python
+def sum_list(numbers):
+  if len(numbers) == 0: #Base case
+    return 0
+  else:
+    return numbers[0] + sum_list(numbers[1:]) #Recursive Case
+
+print(sum_list([1, 2, 3, 4, 5])) #Initial Function Call
+```
+Output: `15`
+
+### Reverse a String
+```python
+def reverse_string(s):
+  if len(s) == 0: #Base case
+    return ""
+  else:
+    return reverse_string(s[1:]) + s[0] #Recursive Case
+
+print(reverse_string("hello")) #Initial Function Call
+```
+Output: `"olleh"`
+
+### Factorial of a Number
+```python
+def factorial(n):
+  if n == 0 or n == 1: #Base Case
+    return 1
+  else:
+    return n * factorial(n - 1) #Recursive Case
+
+print(factorial(5)) #Initial Function Call
+```
+Output: `120`
+
+### Fibonacci Sequence
+```python
+def fibonacci(n):
+  if n == 0 or n == 1: #Base Case
+    return n
+  else:
+    return fibonacci(n - 1) + fibonacci(n - 2) #Recursive Case
+
+print(fibonacci(6)) #Initial Function Call
+```
+Output: `8`
