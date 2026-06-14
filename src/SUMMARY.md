@@ -8,4 +8,6 @@
 [](lessons/algorithms.md)
 [](lessons/algorithms_searching.md)
 [](lessons/algorithms_sorting.md)
+[](lessons/learn_java.md)
+[](lessons/data_structures.md)
 [](lessons/oop.md)
