@@ -62,14 +62,12 @@ System.out.println("Hello " + name);
 
 ## Your First Program
 
-## Python
-
+Python:
 ```python
 print("Hello, world!")
 ```
 
-## Java
-
+Java:
 ```java
 public class Main {
     public static void main(String[] args) {
