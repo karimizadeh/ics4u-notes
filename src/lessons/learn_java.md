@@ -16,6 +16,50 @@ Python is more flexible and forgiving. Java is more strict and requires more str
 | Functions | `def` | methods |
 | Objects | Optional at first | Central to Java |
 
+## Comments in Python vs Java
+
+Comments are notes written in code for humans to read. The computer ignores comments when the program runs.
+
+Comments are useful for:
+- explaining what a section of code does
+- leaving reminders for yourself
+- making code easier for others to understand
+- temporarily disabling code while testing
+
+### Single-Line Comments
+
+In Python, single-line comments use `#`.
+
+```python
+# This is a single-line comment
+print("Hello")
+```
+
+In Java, single-line comments use //.
+
+```java
+// This is a single-line comment
+System.out.println("Hello");
+```
+
+To do a multi-line comment in Java, use the format: `/*` and `*/`.
+
+```java
+/*
+This program asks the user for their name.
+Then it prints a greeting.
+This is written across multiple lines.
+*/
+String name = "Mitchell";
+System.out.println("Hello " + name);
+```
+
+### Important Java rules:
+
+- Most Java statements end with a semicolon: `;`
+- Code blocks are surrounded by curly braces: `{ }`
+- The code inside the braces belongs to that block
+
 ## Your First Program
 
 ## Python
@@ -123,16 +167,16 @@ calculateAverage()
 
 Python:
 ```python
-name = "Alex"
+name = "Mitchell"
 print("Hello", name)
 ```
 
 Java:
 ```java
-String name = "Alex";
+String name = "Mitchell";
 System.out.println("Hello " + name);
 ```
-Java uses `+` not commas, to join text and variables.
+Java uses `+`, not commas, to join text and variables.
 
 ```java
 int age = 17;
@@ -158,7 +202,7 @@ public class Main {
         Scanner input = new Scanner(System.in);
 
         System.out.print("Enter your name: ");
-        String name = input.nextLine();
+        String name = input.nextLine(); // clears leftover Enter key
 
         System.out.print("Enter your age: ");
         int age = input.nextInt();
@@ -178,8 +222,7 @@ Important Scanner methods:
 | Whole line of text | `nextLine()` |
 | Boolean | `nextBoolean()` |
 
-Be careful when mixing `nextInt()` and `nextLine()`.
-
+Be careful when mixing `nextInt()` and `nextLine()`. Because `nextInt()` reads the number, but it does not fully clear the Enter key from the input.
 ```java
 int age = input.nextInt();
 input.nextLine(); // clears leftover Enter key
@@ -324,7 +367,7 @@ Python:
 def greet(name):
     print("Hello " + name)
 
-greet("Alex")
+greet("Mitchell")
 ```
 
 Java:
@@ -335,18 +378,23 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        greet("Alex");
+        greet("Mitchell");
     }
 }
 ```
 
-Java methods need this for now:
+For now, many of our beginner methods will start with:
 
 ```java
 public static void
 ```
-
 `void` means the method does not return a value.
+
+Use `int`, `double`, `String`, or `boolean` if the method returns a value.
+
+```java
+public static int add(int a, int b)
+```
 
 ### Methods That Return Values
 
@@ -431,13 +479,13 @@ public class Main {
     public static void main(String[] args) {
         ArrayList<String> names = new ArrayList<String>();
 
-        names.add("Alex");
-        names.add("Sam");
-        names.add("Jordan");
+        names.add("Mitchell");
+        names.add("Dylan");
+        names.add("Eric");
 
         System.out.println(names.get(0));
 
-        names.set(1, "Taylor");
+        names.set(1, "David");
 
         names.remove(2);
 
@@ -448,11 +496,11 @@ public class Main {
 
 | Python List | Java ArrayList |
 |---|---|
-| `names.append("Alex")` | `names.add("Alex");` |
+| `names.append("Mitchell")` | `names.add("Mitchell");` |
 | `names[0]` | `names.get(0)` |
-| `names[1] = "Sam"` | `names.set(1, "Sam");` |
+| `names[1] = "Dylan"` | `names.set(1, "Dylan");` |
 | `len(names)` | `names.size()` |
-| `names.remove("Alex")` | `names.remove("Alex");` |
+| `names.remove("Mitchell")` | `names.remove("Mitchell");` |
 
 ## Strings
 
@@ -501,38 +549,38 @@ Do not compare Strings using `==`.
 Wrong:
 
 ```java
-if (name == "Alex") {
-    System.out.println("Hi Alex");
+if (name == "Mitchell") {
+    System.out.println("Hi Mitchell");
 }
 ```
 
 Correct:
 
 ```java
-if (name.equals("Alex")) {
-    System.out.println("Hi Alex");
+if (name.equals("Mitchell")) {
+    System.out.println("Hi Mitchell");
 }
 ```
 
 For case-insensitive comparison:
 
 ```java
-if (name.equalsIgnoreCase("alex")) {
-    System.out.println("Hi Alex");
+if (name.equalsIgnoreCase("Mitchell")) {
+    System.out.println("Hi Mitchell");
 }
 ```
 
 In Python:
 
 ```python
-if name == "Alex":
-    print("Hi Alex")
+if name == "Mitchell":
+    print("Hi Mitchell")
 ```
 
 In Java:
 
 ```java
-if (name.equals("Alex")) {
-    System.out.println("Hi Alex");
+if (name.equals("Mitchell")) {
+    System.out.println("Hi Mitchell");
 }
 ```
