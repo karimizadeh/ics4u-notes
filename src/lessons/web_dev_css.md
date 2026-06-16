@@ -4,6 +4,14 @@ CSS stands for **Cascading Style Sheets**. CSS controls how HTML appears on the 
 
 HTML controls content and structure. CSS controls presentation.
 
+HTML answers:
+
+> What content is on the page?
+
+CSS answers:
+
+> What should it look like?
+
 Example:
 
 ```css
@@ -24,11 +32,32 @@ CSS can be added in three ways:
 | Internal | `<style>` inside HTML | Useful for quick testing |
 | External | Separate `.css` file | Best for this unit |
 
-Students should use **external CSS**.
+Instead of writing styles inside each HTML file, we place styles in a separate `.css` file. Students should use **external CSS**.
 
 ```html
 <link rel="stylesheet" href="css/style.css">
 ```
+This goes inside the `<head>` section.
+
+Benefits of external CSS:
+
+- Keeps HTML cleaner
+- Makes the website easier to update
+- Allows one CSS file to style multiple pages
+- Helps students separate structure from design
+
+# The Cascade
+
+CSS is called “cascading” because multiple rules can apply to the same element.
+
+General priority:
+
+1. Inline style
+2. Internal style
+3. External CSS
+4. Browser default style
+
+For this course, students should mostly use **external CSS**.
 
 ## CSS Rule Structure
 
@@ -43,13 +72,21 @@ Example:
 ```css
 h1 {
     color: navy;
-    text-align: center;
+    font-size: 18px;
 }
 ```
 
 - `h1` is the selector.
 - `color` and `text-align` are properties.
 - `navy` and `center` are values.
+
+This changes all h1 header text to navy and font-size to 18 pixels.
+
+## CSS Comments
+
+```css
+/* This is a CSS comment */
+```
 
 ## Common CSS Properties
 
@@ -128,7 +165,7 @@ CSS:
 
 ## ID Selectors
 
-An ID should be unique on a page.
+An ID selector targets one unique element.
 
 HTML:
 
@@ -145,10 +182,11 @@ CSS:
     border: 2px solid black;
 }
 ```
+IDs should be unique on the page.
 
 ## Grouping Selectors
 
-Use grouping to apply the same rule to multiple selectors.
+If multiple elements share the same style, group them with commas.
 
 ```css
 h1, h2, h3 {
@@ -230,7 +268,7 @@ Common formats:
 - hexadecimal colours, such as `#ffffff`
 - RGB colours, such as `rgb(255, 255, 255)`
 
-## The Box Model
+## The CSS Box Model
 
 Every HTML element can be thought of as a box.
 
@@ -307,6 +345,32 @@ main {
 ```
 
 This keeps content readable on large screens while still allowing it to shrink on smaller screens.
+
+## Centering a Page
+
+A common website layout uses a container.
+
+HTML:
+
+```html
+<div class="container">
+    <main>
+        <h1>Welcome</h1>
+    </main>
+</div>
+```
+
+CSS:
+
+```css
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+}
+```
+`margin: 0 auto;` centers the container horizontally.
+
 
 ## Basic Card Layout
 
