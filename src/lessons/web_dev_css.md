@@ -1,4 +1,4 @@
-# Web Development - CSS
+# Web Development - CSS Basics
 
 CSS stands for **Cascading Style Sheets**. CSS controls how HTML appears on the page.
 
