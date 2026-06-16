@@ -82,8 +82,8 @@ Each object gets its own copy of the instance variables.
 For example:
 
 ```java
-Student s1 = new Student("Ava", 12, 86.5);
-Student s2 = new Student("Leo", 11, 74.0);
+Student s1 = new Student("Mitchell", 12, 86.5);
+Student s2 = new Student("William", 11, 74.0);
 ```
 
 `s1` and `s2` are both `Student` objects, but they store different data.
@@ -112,8 +112,8 @@ public class Student {
 Now we can create objects like this:
 
 ```java
-Student s1 = new Student("Ava", 12, 86.5);
-Student s2 = new Student("Leo", 11, 74.0);
+Student s1 = new Student("Mitchell", 12, 86.5);
+Student s2 = new Student("William", 11, 74.0);
 ```
 
 The constructor lets us create a complete object in one line.
@@ -157,7 +157,7 @@ This method checks whether the student is passing.
 We can call the method using an object:
 
 ```java
-Student s1 = new Student("Ava", 12, 86.5);
+Student s1 = new Student("Mitchell", 12, 86.5);
 
 System.out.println(s1.isPassing());
 ```
@@ -251,7 +251,7 @@ Java automatically calls `toString()`.
 Output:
 
 ```text
-Ava | Grade: 12 | Average: 86.5
+Mitchell | Grade: 12 | Average: 86.5
 ```
 
 Without a custom `toString()` method, Java prints a less useful memory-style value.
@@ -304,7 +304,7 @@ Example use:
 ```java
 public class Main {
     public static void main(String[] args) {
-        Student s1 = new Student("Ava", 12, 86.5);
+        Student s1 = new Student("Mitchell", 12, 86.5);
 
         System.out.println(s1);
         System.out.println(s1.getName());
@@ -319,10 +319,10 @@ public class Main {
 Output:
 
 ```text
-Ava | Grade: 12 | Average: 86.5
-Ava
+Mitchell | Grade: 12 | Average: 86.5
+Mitchell
 true
-Ava | Grade: 12 | Average: 92.0
+Mitchell | Grade: 12 | Average: 92.0
 ```
 
 ## Object References
@@ -332,7 +332,7 @@ In Java, object variables store **references**.
 A reference is like a way to find the object in memory.
 
 ```java
-Student s1 = new Student("Ava", 12, 86.5);
+Student s1 = new Student("Mitchell", 12, 86.5);
 Student s2 = s1;
 ```
 
@@ -469,7 +469,7 @@ System.out.println(student);
 Output:
 
 ```text
-Ava is in grade 12 and is taking ICS4U: Computer Science with Ms. Marie
+Mitchell is in grade 12 and is taking ICS4U: Computer Science with Ms. Marie
 ```
 
 This is important because OOP programs are usually made of multiple objects working together.
@@ -483,7 +483,7 @@ This is important because OOP programs are usually made of multiple objects work
 | Inheritance | Creating a class based on another class |
 | Polymorphism | Allowing related objects to be treated in flexible ways |
 
-## Linked List?
+## Linked Lists
 
 A linked list is a data structure made of connected nodes.
 
@@ -511,9 +511,7 @@ A linked list usually has:
 | `Node` | Stores one piece of data and a reference to the next node |
 | `LinkedList` | Manages the whole list |
 
-This shows an important OOP design idea:
-
-> Each class should have a clear job.
+This shows an important OOP design idea: each class should have a clear job.
 
 
 ### The Node Class
