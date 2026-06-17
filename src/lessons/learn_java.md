@@ -1,4 +1,5 @@
 # Learning Java
+
 Python and Java can solve the same problems, but they look and behave differently.
 
 Python is more flexible and forgiving. Java is more strict and requires more structure.

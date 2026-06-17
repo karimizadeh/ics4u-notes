@@ -66,7 +66,7 @@ Use `textarea` for longer text.
 <textarea id="message" name="message"></textarea>
 ```
 
-# Select Dropdown
+## Select Dropdown
 
 ```html
 <label for="topic">Topic</label>

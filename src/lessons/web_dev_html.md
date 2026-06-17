@@ -110,6 +110,7 @@ F12
 ```
 
 On many browsers, the console is found under the **Console** tab.
+
 ## Folder Setup
 
 Recommended folder structure:

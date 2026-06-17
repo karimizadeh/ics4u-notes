@@ -170,6 +170,110 @@ switch(grade) {
         break;
 }
 ```
+## Truthy and Falsy Values in JavaScript
+
+In JavaScript, conditions do not always need to be written as direct comparisons.
+
+For example:
+
+```js
+if (isLoggedIn === true) {
+    console.log("Welcome!");
+}
+```
+can sometimes be written as:
+```js
+if (isLoggedIn) {
+    console.log("Welcome!");
+}
+```
+This works because JavaScript treats some values as truthy and some values as falsy.
+
+What Does Falsy Mean?
+
+A falsy value is a value that JavaScript treats like false when used in a condition.
+
+These are the common falsy values:
+```js
+false
+0
+""
+null
+undefined
+NaN
+```
+
+Example:
+```js
+let username = "";
+
+if (username) {
+    console.log("Username entered.");
+} else {
+    console.log("Username is missing.");
+}
+```
+Output: `Username is missing.`
+
+The empty string `""` is falsy, so the else block runs.
+
+### What Does Truthy Mean?
+
+A truthy value is a value that JavaScript treats like true when used in a condition.
+
+Most values in JavaScript are truthy.
+
+```js
+true
+1
+-1
+"hello"
+"0"
+"false"
+[]
+{}
+```
+
+Important: 
+* `"false"` is truthy because it is a non-empty string.
+* `"0"` is also truthy because it is a non-empty string.
+
+**Becareful!** Truthy and falsy values are useful, but they can also create confusing bugs.
+
+Instead of:
+```js
+if (score) {
+    console.log("Score entered.");
+}
+```
+Write:
+```js
+if (score !== "") {
+    console.log("Score entered.");
+}
+```
+OR
+
+```js
+if (score >= 0) {
+    console.log("Valid score.");
+}
+```
+
+| Value | Truthy or Falsy? |
+|---|---|
+| `false` | Falsy |
+| `0` | Falsy |
+| `""` | Falsy |
+| `null` | Falsy |
+| `undefined` | Falsy |
+| `NaN` | Falsy |
+| `"hello"` | Truthy |
+| `"0"` | Truthy |
+| `"false"` | Truthy |
+| `1` | Truthy |
+| `[]` | Truthy |
+| `{}` | Truthy |
 
 ## Loops
 ```javascript

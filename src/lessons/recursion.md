@@ -1,6 +1,5 @@
 # Recursion in Python
 
-## What is Recursion?
 To put it simply, recursion is when a function calls itself. It is a technique that solves a problem by breaking it into smaller versions of the same problem.
 
 Recursion is like asking the next person to solve a smaller version of the same problem, until someone reaches the easiest possible case.
