@@ -38,6 +38,28 @@ console.log("JavaScript is working.");
 
 The console is useful for testing and debugging.
 
+## Comments
+
+Comments are notes for humans. JavaScript ignores comments when the program runs.
+
+Single-line comment:
+
+```javascript
+// This message will appear in the console.
+console.log("Hello");
+```
+
+Multi-line comment:
+
+```javascript
+/*
+This is a longer comment.
+It can take up more than one line.
+*/
+```
+
+Comments should explain why something is happening, not just repeat what the code already says.
+
 ## Variables
 
 Use `let` for values that may change.
@@ -275,14 +297,266 @@ if (score >= 0) {
 | `[]` | Truthy |
 | `{}` | Truthy |
 
+## Type Conversion
+
+JavaScript sometimes converts values automatically. This is called **type coercion**.
+
+```javascript
+console.log("5" + 2); // "52"
+console.log("5" - 2); // 3
+```
+
+This can be confusing. When working with form input, remember that values usually come in as strings.
+
+```html
+<input id="age" type="number">
+```
+
+```javascript
+const ageInput = document.querySelector("#age");
+const age = Number(ageInput.value);
+
+if (age >= 18) {
+    console.log("Adult");
+}
+```
+
+Common conversion functions:
+
+| Function | Purpose | Example |
+|---|---|---|
+| `Number(value)` | Convert to a number | `Number("42")` gives `42` |
+| `String(value)` | Convert to a string | `String(42)` gives `"42"` |
+| `Boolean(value)` | Convert to true/false | `Boolean("")` gives `false` |
+| `parseInt(value)` | Convert to an integer | `parseInt("42px")` gives `42` |
+| `parseFloat(value)` | Convert to a decimal number | `parseFloat("3.14")` gives `3.14` |
+
+
 ## Loops
+
+Loops are used when a program needs to repeat code.
+
+A loop usually needs three things:
+
+1. a starting value,
+2. a condition that controls when the loop should stop,
+3. an update that moves the loop toward stopping.
+
+Without a proper stopping condition, a loop can become an **infinite loop**, which means it keeps running forever.
+
+### `for` Loops
+
+A `for` loop is useful when you know how many times something should repeat.
+
 ```javascript
 let total = 0;
-for(let i = 1; i < 11; i++) {
+
+for (let i = 1; i <= 10; i++) {
     total += i;
     console.log("i", i, "total", total);
 }
 ```
+
+The three parts of the loop are:
+
+```javascript
+for (starting value; condition; update) {
+    // repeated code
+}
+```
+
+Example:
+
+```javascript
+for (let i = 0; i < 5; i++) {
+    console.log(i);
+}
+```
+
+Output:
+
+```text
+0
+1
+2
+3
+4
+```
+
+Important: `i < 5` stops before 5. This is common because counting in programming often starts at 0.
+
+### Counting Backward
+
+Loops can also count down.
+
+```javascript
+for (let countdown = 5; countdown >= 1; countdown--) {
+    console.log(countdown);
+}
+
+console.log("Blast off!");
+```
+
+### Looping Through an Array with an Index
+
+Use this approach when you need the position/index of each item.
+
+```javascript
+const pages = ["Home", "About", "Gallery", "Contact"];
+
+for (let i = 0; i < pages.length; i++) {
+    console.log(i, pages[i]);
+}
+```
+
+Output:
+
+```text
+0 Home
+1 About
+2 Gallery
+3 Contact
+```
+
+### `for...of` Loops
+
+A `for...of` loop is useful when you want each value in an array and do not need the index.
+
+```javascript
+const pages = ["Home", "About", "Gallery", "Contact"];
+
+for (const page of pages) {
+    console.log(page);
+}
+```
+
+This reads more naturally than a regular `for` loop, but it does not automatically give you the index number.
+
+### `while` Loops
+
+A `while` loop is useful when you do not know exactly how many times the loop will run.
+
+The loop continues while the condition is true.
+
+```javascript
+let password = "";
+
+while (password !== "open") {
+    password = prompt("Enter the password:");
+}
+
+console.log("Access granted.");
+```
+
+A `while` loop checks the condition before running the code inside the loop. If the condition is false at the start, the loop may run zero times.
+
+### `do...while` Loops
+
+A `do...while` loop always runs at least once because the condition is checked after the loop body.
+
+```javascript
+let choice;
+
+do {
+    choice = prompt("Enter A, B, or C:");
+} while (choice !== "A" && choice !== "B" && choice !== "C");
+
+console.log("You chose " + choice);
+```
+
+This is useful for menus or input validation where the user should be asked at least one time.
+
+### `break`
+
+`break` immediately stops a loop.
+
+```javascript
+const scores = [82, 91, 100, 76, 88];
+
+for (const score of scores) {
+    if (score === 100) {
+        console.log("Perfect score found!");
+        break;
+    }
+
+    console.log("Checked", score);
+}
+```
+
+### `continue`
+
+`continue` skips the rest of the current loop cycle and moves to the next cycle.
+
+```javascript
+const scores = [82, -1, 91, -1, 76];
+
+for (const score of scores) {
+    if (score === -1) {
+        continue;
+    }
+
+    console.log("Valid score:", score);
+}
+```
+
+In this example, `-1` is skipped because it represents missing data.
+
+### Loop Type Summary
+
+| Loop Type | Best Used When | Example Use |
+|---|---|---|
+| `for` | You know how many times to repeat | Count from 1 to 10 |
+| `for...of` | You want each value in a list | Print every page name |
+| `while` | You repeat until a condition changes | Keep asking until a password is correct |
+| `do...while` | The code must run at least once | Show a menu before checking the choice |
+
+### Common Loop Mistakes
+
+#### Mistake 1: Forgetting to update the loop variable
+
+```javascript
+let i = 0;
+
+while (i < 5) {
+    console.log(i);
+    // missing i++
+}
+```
+
+This loop never ends because `i` always stays at 0.
+
+#### Mistake 2: Off-by-one errors
+
+```javascript
+const names = ["Ava", "Noah", "Mia"];
+
+for (let i = 0; i <= names.length; i++) {
+    console.log(names[i]);
+}
+```
+
+This goes too far. The last valid index is `names.length - 1`.
+
+Corrected version:
+
+```javascript
+for (let i = 0; i < names.length; i++) {
+    console.log(names[i]);
+}
+```
+
+#### Mistake 3: Using `for...in` for arrays
+
+`for...in` loops through property names, not values. For beginner array work, use `for`, `for...of`, or array methods instead.
+
+```javascript
+const colours = ["red", "green", "blue"];
+
+for (const colour of colours) {
+    console.log(colour);
+}
+```
+
 
 ## Functions
 
@@ -296,6 +570,73 @@ function greetUser(name) {
 let message = greetUser("Mitchell");
 console.log(message);
 ```
+
+### Parameters and Arguments
+
+A **parameter** is the variable listed in the function definition.
+
+An **argument** is the actual value sent into the function when it is called.
+
+```javascript
+function calculateArea(width, height) {
+    return width * height;
+}
+
+let area = calculateArea(10, 5);
+console.log(area); // 50
+```
+
+In this example:
+
+- `width` and `height` are parameters,
+- `10` and `5` are arguments,
+- `return` sends the answer back to the part of the program that called the function.
+
+### Functions Without Return Values
+
+Some functions do an action but do not return a value.
+
+```javascript
+function showError(message) {
+    const errorBox = document.querySelector("#error");
+    errorBox.textContent = message;
+}
+
+showError("Please enter your name.");
+```
+
+This function changes the page, but it does not calculate and return a new value.
+
+### Function Scope
+
+Variables created inside a function usually only exist inside that function.
+
+```javascript
+function addBonus(score) {
+    let bonus = 5;
+    return score + bonus;
+}
+
+console.log(addBonus(80));
+// console.log(bonus); // Error: bonus is not defined outside the function
+```
+
+This is called **scope**. Scope helps prevent one part of a program from accidentally changing another part.
+
+### Arrow Functions
+
+JavaScript also has arrow functions. These are often used with event listeners and array methods.
+
+```javascript
+const greetUser = (name) => {
+    return "Hello, " + name + "!";
+};
+
+console.log(greetUser("Mitchell"));
+```
+
+For this course, regular `function` syntax is easier when learning the basics. Arrow functions are still useful to recognize because examples online often use them.
+
 
 ## Events
 
@@ -360,7 +701,69 @@ let pages = ["Home", "About", "Gallery", "Contact"];
 console.log(pages[0]); // Home
 console.log(pages.length); // 4
 ```
-# Objects
+
+Array indexes start at 0.
+
+| Index | Value |
+|---|---|
+| `0` | `"Home"` |
+| `1` | `"About"` |
+| `2` | `"Gallery"` |
+| `3` | `"Contact"` |
+
+### Changing Array Items
+
+```javascript
+pages[2] = "Photos";
+console.log(pages);
+```
+
+### Adding and Removing Items
+
+```javascript
+pages.push("FAQ");      // adds to the end
+pages.pop();             // removes from the end
+pages.unshift("Start");  // adds to the beginning
+pages.shift();           // removes from the beginning
+```
+
+### Checking an Array
+
+```javascript
+console.log(pages.includes("Contact")); // true
+console.log(pages.indexOf("About"));    // 1
+```
+
+### Looping Through an Array
+
+```javascript
+for (const page of pages) {
+    console.log(page);
+}
+```
+
+### Array of Objects
+
+Websites often use arrays of objects because each item may need more than one piece of information.
+
+```javascript
+const projects = [
+    {
+        title: "Portfolio Website",
+        category: "HTML/CSS"
+    },
+    {
+        title: "Quiz App",
+        category: "JavaScript"
+    }
+];
+
+console.log(projects[0].title); // Portfolio Website
+```
+
+This structure is useful when creating cards, galleries, menus, or lists on a webpage.
+
+## Objects
 
 Objects store related data using key-value pairs.
 
@@ -371,6 +774,35 @@ let website = {
     hasContactForm: true
 };
 ```
+
+Each key describes one piece of data.
+
+```javascript
+console.log(website.title);
+console.log(website["pages"]);
+```
+
+Dot notation is usually easier to read:
+
+```javascript
+website.title = "Updated Portfolio";
+website.owner = "Mitchell";
+
+console.log(website);
+```
+
+Objects are useful when one thing has multiple related properties.
+
+Example:
+
+```javascript
+const student = {
+    name: "Ava",
+    grade: 11,
+    isPassing: true
+};
+```
+
 
 ## What is the DOM?
 
@@ -424,6 +856,45 @@ To select multiple elements:
 const links = document.querySelectorAll("nav a");
 ```
 
+### `querySelector` vs. `querySelectorAll`
+
+| Method | Returns | Example |
+|---|---|---|
+| `querySelector()` | The first matching element | `document.querySelector(".card")` |
+| `querySelectorAll()` | A list of all matching elements | `document.querySelectorAll(".card")` |
+
+When using `querySelectorAll()`, you often need a loop.
+
+```javascript
+const cards = document.querySelectorAll(".card");
+
+for (const card of cards) {
+    card.classList.add("highlight");
+}
+```
+
+### Avoiding `null` Errors
+
+If JavaScript cannot find an element, `querySelector()` returns `null`.
+
+```javascript
+const button = document.querySelector("#missingButton");
+console.log(button); // null
+```
+
+This causes an error:
+
+```javascript
+button.textContent = "Click me";
+```
+
+Safer version:
+
+```javascript
+if (button !== null) {
+    button.textContent = "Click me";
+}
+```
 
 ## Reading Content
 
