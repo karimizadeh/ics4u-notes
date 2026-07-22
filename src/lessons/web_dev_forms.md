@@ -7,13 +7,14 @@ Forms can include:
 - text fields,
 - email fields,
 - password fields,
+- number fields,
 - radio buttons,
 - checkboxes,
 - dropdown menus,
 - text areas,
 - submit buttons.
 
-Forms can send data to a server, but in this unit students can also use forms for in-browser processing with JavaScript.
+Forms can send data to a server, but in this unit you can also use forms for in-browser processing with JavaScript.
 
 Forms are important because they allow a website to become interactive. A form can collect information for:
 
@@ -53,8 +54,6 @@ In a front-end web development, forms are useful because they combine all three 
 <div id="errors"></div>
 ```
 
-A form usually has:
-
 | Part | Purpose |
 |---|---|
 | `<form>` | Groups the form fields together |
@@ -66,29 +65,22 @@ A form usually has:
 | `<textarea>` | Collects longer written responses |
 | `<button type="submit">` | Submits the form |
 
-For this unit, students will often use `action="#"` because the form is not being sent to a real server.
+For this unit, you will often use `action="#"` because the form is not being sent to a real server.
 
 ```html
-<form action="#">
+<form id="signup-form" action="#">
 ```
 
 This means the form exists mainly for practice and JavaScript interaction.
 
-## The `form` Element
-
 The `<form>` element wraps the input fields that belong together.
-
-```html
-<form id="signup-form">
-    <!-- form fields go here -->
-</form>
-```
-
 The `id` is useful when JavaScript needs to select the form.
 
 ```js
 const form = document.querySelector("#signup-form");
 ```
+
+### Form Submission Methods
 
 The `method` attribute describes how the form data would be sent to a server.
 
@@ -97,11 +89,11 @@ The `method` attribute describes how the form data would be sent to a server.
 | `get` | Sends data in the URL | Searches and filters |
 | `post` | Sends data in the request body | Sign-ups, contact forms, logins |
 
-For beginner front-end work, students usually do not need to send the form to a real server. They still need to understand that real websites often send form data somewhere.
+For front-end work, you usually do not need to send the form to a real server. However, you still need to understand that real websites often send form data somewhere.
 
 ## `id` vs. `name`
 
-Students often confuse `id` and `name`.
+Don't confuse `id` and `name`.
 
 They are not the same thing.
 
@@ -162,21 +154,6 @@ This is common for checkboxes and radio buttons.
 </label>
 ```
 
-## Required Fields and Visual Clarity
-
-If a field is required, the form should make that clear.
-
-```html
-<label for="name">Name <span aria-hidden="true">*</span></label>
-<input id="name" name="name" type="text" required>
-```
-
-The `required` attribute tells the browser that the field cannot be empty.
-
-The `*` helps users see that the field is required.
-
-Do not rely on colour only to show required fields. Some users may not see colour differences clearly.
-
 ## Common Input Types
 
 ```html
@@ -188,6 +165,9 @@ Do not rely on colour only to show required fields. Some users may not see colou
 <input type="checkbox">
 <input type="radio">
 <input type="file">
+<input type="tel">
+<input type="url">
+<input type="search">
 ```
 
 
@@ -211,10 +191,16 @@ Input types matter because the browser can give users better controls. For examp
 
 Use `textarea` for longer text.
 
+A `textarea` has an opening and closing tag.
+
 ```html
-<textarea id="message" name="message"></textarea>
+<textarea></textarea>
 ```
 
+```html
+<label for="message">Message:</label>
+<textarea id="message" name="message"></textarea>
+```
 Unlike an `<input>`, it is not written as a single self-contained tag.
 
 You can control the starting size with `rows` and `cols`, but CSS is usually better for layout.
@@ -222,6 +208,10 @@ You can control the starting size with `rows` and `cols`, but CSS is usually bet
 ```html
 <textarea id="message" name="message" rows="5"></textarea>
 ```
+
+
+## Select Dropdown
+
 A dropdown lets the user choose from a list.
 
 ```html
@@ -260,18 +250,6 @@ Then JavaScript can check whether the value is still empty.
 if (topicInput.value === "") {
     console.log("Please choose a topic.");
 }
-```
-
-## Select Dropdown
-
-```html
-<label for="topic">Topic</label>
-<select id="topic" name="topic">
-    <option value="">Choose one</option>
-    <option value="question">Question</option>
-    <option value="feedback">Feedback</option>
-    <option value="other">Other</option>
-</select>
 ```
 
 ## Fieldset and Legend
@@ -414,7 +392,7 @@ Buttons can have different types.
 
 Inside a form, a plain `<button>` acts like a submit button by default.
 
-This can surprise students.
+This can be surprising.
 
 Instead of:
 
@@ -431,6 +409,8 @@ Write:
 Use `type="submit"` only when the button is supposed to submit the form.
 
 ## Styling Forms
+
+Form styling should make the form easier to read and easier to use.
 
 ```css
 form {
@@ -509,15 +489,6 @@ This avoids giant checkboxes and radio buttons.
 
 HTML includes some built-in validation tools.
 
-```html
-<input type="text" id="name" name="name" required>
-<input type="email" id="email" name="email" required>
-<input type="number" id="age" name="age" min="13" max="120">
-<input type="text" id="phone" name="phone" pattern="^\d{3}-\d{3}-\d{4}$">
-```
-
-Useful attributes:
-
 | Attribute | Purpose |
 |---|---|
 | `required` | Field must be filled in |
@@ -536,8 +507,6 @@ Useful attributes:
 HTML validation is useful for simple rules.
 
 JavaScript validation is useful for more customized rules.
-
-## HTML Validation Attributes
 
 ### Required
 
@@ -614,7 +583,7 @@ This pattern means:
 | `\d` | One digit |
 | `[ -]?` | Optional space or hyphen |
 
-Patterns can be useful, but they can also become complicated. For beginner projects, use patterns only when the expected format is clear.
+Patterns can be useful, but they can also become complicated. Use patterns only when the expected format is clear.
 
 ### Placeholder and Title
 
@@ -678,9 +647,7 @@ form.addEventListener("submit", function(event) {
 
 `event.preventDefault()` stops the browser from refreshing or submitting the form to a server.
 
-`event.preventDefault()` stops the browser from refreshing or submitting the form to a server.
-
-This is important when students want JavaScript to process the form on the same page.
+This is important when you want JavaScript to process the form on the same page.
 
 ## Reading Different Input Values
 
@@ -858,67 +825,6 @@ For class projects, client-side validation is enough.
 
 For real websites, server-side validation is also required.
 
-## HTML Validation Attributes
-
-### Required
-
-```html
-<input id="name" name="name" type="text" required>
-```
-
-The field must be filled in.
-
-
-### Min and Max
-
-```html
-<input id="age" name="age" type="number" min="13" max="120">
-```
-
-The number must be within the range.
-
-
-### Maxlength
-
-```html
-<input id="username" name="username" type="text" maxlength="20">
-```
-
-The input cannot be longer than 20 characters.
-
-
-### Pattern
-
-The `pattern` attribute uses a regular expression.
-
-Example for a Canadian postal code:
-
-```html
-<input
-    id="postal-code"
-    name="postal-code"
-    type="text"
-    pattern="[A-Za-z]\d[A-Za-z][ -]?\d[A-Za-z]\d"
-    placeholder="A1A 1A1"
->
-```
-
-
-### Placeholder and Title
-
-```html
-<input
-    id="phone"
-    name="phone"
-    type="tel"
-    placeholder="555-555-5555"
-    title="Enter a phone number in the format 555-555-5555"
->
-```
-
-`placeholder` gives an example.
-
-`title` can give more instructions.
 
 ## CSS Validation Pseudo-Classes
 
@@ -948,7 +854,28 @@ Other useful pseudo-classes:
 | `:optional` | Input does not have the required attribute |
 | `:in-range` | Number is within range |
 | `:out-of-range` | Number is outside range |
+| `:focus` | Input is currently selected |
+| `:checked` | Checkbox or radio button is selected |
 
+### Avoid Showing Red Before the User Types
+
+If you style every invalid input red, required fields may appear red as soon as the page loads.
+
+That can feel harsh.
+
+A better approach is to apply an error class after validation runs.
+
+```css
+.error {
+    border: 2px solid red;
+}
+```
+
+Then JavaScript can add the class only when needed.
+
+```js
+nameInput.classList.add("error");
+```
 
 ## JavaScript Validation
 
@@ -958,10 +885,36 @@ HTML5 validation is helpful, but JavaScript gives more control. With JavaScript,
 - check multiple fields together,
 - highlight invalid fields,
 - stop the form from submitting,
-- give immediate feedback.
+- give immediate feedback,
+- check whether two fields match,
+- create a summary of all errors.
 
-Important: client-side validation is helpful, but real websites also need server-side validation. For this unit, students only need to implement client-side validation.
 
+Important: client-side validation is helpful, but real websites also need server-side validation. For this unit, you only need to implement client-side validation.
+
+## A Simple JavaScript Validation Pattern
+
+Most form validation follows this pattern:
+
+1. Select the form and inputs.
+2. Listen for the `submit` event.
+3. Prevent the default form submission.
+4. Clear old error messages.
+5. Check each field.
+6. If there are errors, show them.
+7. If there are no errors, show a success message or continue.
+
+```js
+form.addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    // 1. Clear old errors
+
+    // 2. Check each field
+
+    // 3. Display errors or success
+});
+```
 
 
 ## Validation Example
@@ -969,7 +922,7 @@ Important: client-side validation is helpful, but real websites also need server
 HTML:
 
 ```html
-<form id="contactForm" action="#" method="post">
+<form id="contactForm" action="#" method="post" novalidate>
     <label for="name">Name:</label>
     <input type="text" id="name" name="name">
 
@@ -982,8 +935,15 @@ HTML:
     <button type="submit">Send</button>
 </form>
 
-<div id="errors"></div>
+<div id="errors" aria-live="polite"></div>
+<div id="success"></div>
 ```
+
+The `novalidate` attribute turns off the browser's built-in validation messages.
+
+This is useful when you want to practise writing their own JavaScript validation.
+
+
 
 CSS:
 
@@ -996,6 +956,12 @@ CSS:
     color: darkred;
     font-weight: bold;
 }
+
+#success {
+    color: darkgreen;
+    font-weight: bold;
+}
+
 ```
 
 JavaScript:
@@ -1006,13 +972,19 @@ const nameInput = document.querySelector("#name");
 const emailInput = document.querySelector("#email");
 const messageInput = document.querySelector("#message");
 const errors = document.querySelector("#errors");
+const success = document.querySelector("#success");
+
 
 form.addEventListener("submit", function (event) {
+    event.preventDefault();
     let errorMessages = [];
 
     nameInput.classList.remove("error");
     emailInput.classList.remove("error");
     messageInput.classList.remove("error");
+
+    errors.textContent = "";
+    success.textContent = "";
 
     if (nameInput.value.trim() === "") {
         errorMessages.push("Name is required.");
@@ -1030,14 +1002,14 @@ form.addEventListener("submit", function (event) {
     }
 
     if (errorMessages.length > 0) {
-        event.preventDefault();
         errors.innerHTML = errorMessages
             .map(function (message) {
                 return "<p>" + message + "</p>";
             })
             .join("");
     } else {
-        errors.textContent = "";
+        success.textContent = "Thanks! Your message was sent.";
+        form.reset();
     }
 });
 ```
@@ -1050,6 +1022,7 @@ Good error messages should:
 - Be polite
 - Tell the user how to fix the issue
 - Appear near the problem when possible
+- Don't blame the user
 
 Weak:
 
@@ -1062,8 +1035,66 @@ Better:
 ```text
 Username must be at least 5 characters.
 ```
+Weak:
 
-## Validation Tests Students Can Use
+```text
+Wrong.
+```
+
+Better:
+
+```text
+Choose one contact method before submitting.
+```
+
+Weak:
+
+```text
+Bad password.
+```
+
+Better:
+
+```text
+Password must include at least 8 characters and one number.
+```
+
+## Error Message Placement
+
+There are two common ways to show errors.
+
+### Error Summary
+
+An error summary appears above or below the form.
+
+```html
+<div id="errors" aria-live="polite"></div>
+```
+
+This is easiest because all messages go in one place.
+
+### Field-Level Error Messages
+
+A field-level error appears near the field.
+
+```html
+<label for="username">Username</label>
+<input id="username" name="username" type="text">
+<p id="username-error" class="error-message"></p>
+```
+
+```js
+const usernameError = document.querySelector("#username-error");
+
+if (usernameInput.value.trim() === "") {
+    usernameError.textContent = "Username is required.";
+}
+```
+
+Field-level messages are more helpful for users, but they require more code.
+
+
+## Typical Validation Tests 
 
 | Test Type | Example |
 |---|---|

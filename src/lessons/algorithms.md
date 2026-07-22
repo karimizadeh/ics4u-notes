@@ -42,16 +42,66 @@ Different algorithms can solve the same problem, but some are much faster or mor
 
 Searching for a student name in a class of 30 students is easy. However, searching for a student name in a database of 235,000+ students requires a more efficient approach.
 
-The same thing for the simple algorithm example above. In a list of 5 values, its easy to find the largest number. But if the list had millions of entries, we would care more about how many steps the algorithm takes, because the algorithm must still check every value at least once.
+The same thing for the simple algorithm example above. In a list of 5 values, it's easy to find the largest number. But if the list had millions of entries, we would care more about how many steps the algorithm takes, because the algorithm must still check every value at least once.
+
+## Time Complexity vs Space Complexity
+
+Time complexity asks:
+
+```text
+How does the number of steps grow as the input grows?
+```
+
+Space complexity asks:
+
+```text
+How much extra memory does the algorithm need as the input grows?
+```
+
+Example:
+
+```python
+def copy_items(items):
+    result = []
+
+    for item in items:
+        result.append(item)
+
+    return result
+```
+
+This algorithm is:
+
+- `O(n)` time because it loops through all items
+- `O(n)` extra space because it creates a new list with `n` items
+
+Compare that with:
+
+```python
+def print_items(items):
+    for item in items:
+        print(item)
+```
+
+This is:
+
+- `O(n)` time
+- `O(1)` extra space, because it does not create a new list that grows with the input
+
 
 ## Big-O Notation
 
 **Big-O notation** describes how an algorithm grows as the input size grows. It does not tell us the exact number of seconds a program takes, instead, it tells us the general growth pattern.
 
+Two computers may run the same program at different speeds, but Big-O focuses on how the algorithm grows, not the exact hardware speed.
+
 The input size is usually represented by the letter `n`. 
 In Big-O notation, as `n` gets bigger, Big-O helps us figure out how much more work the algoritm has to do as Big-O is about `growth` not exact time.
 
 ## Common Big-O Notations
+
+The categories below are ordered from slower-growing to faster-growing functions.
+
 * **Constant is O(1)** - if it takes the same amount of work no matter how large the input is.
 * **Linear is O(n)** - if the amount of work grows directly with the input size.
 * **Logarithmic is O(log n)** - if the problem size is repeatedly reduced, usually by half.
@@ -59,15 +109,6 @@ In Big-O notation, as `n` gets bigger, Big-O helps us figure out how much more w
 * **Quadratic is O(n^2)** - if the amount of work grows with the square of the input size.
 * **Cubic is O(n^3)** - if the amount of work grows with the cube of the input size.
 * **Exponential is O(2^n)** - if the work roughly doubles every time the input size increases by 1.
-
-### Order of Algorithms from Best to Worst:
-1. O(1) – Constant Time - Does not grow
-1. O(log n) – Logarithmic Time - Grows very slowly
-1. O(n) – Linear Time - Grows directly with input
-1. O(n log n) – Loglinear/Linearithmic Time - Slower than linear. Faster than Quadratic.
-1. O(n^2) – Quadratic Time - Grows quickly
-1. O(n^3) - Cubic Time - Grows very quickly
-1. O(2^n) – Exponential Time - Grows extremely quickly
 
 ### Growth Comparison
 | n | O(1) | O(log n) | O(n) | O(n log n) | O(n^2) | O(n^3) | O(2^n) |
@@ -147,6 +188,31 @@ Like so:
 3 items 
 1 item
 ```
+
+### O(1) Does Not Always Mean Fast
+
+`O(1)` means the work does not grow with the input size. It does not automatically mean the operation is tiny or instant.
+
+For example, a function might always perform 500 steps no matter how big the list is. That is still constant time because the number of steps does not grow with `n`.
+
+### O(n) with Two Separate Loops
+
+Two separate loops through the same list are still linear.
+
+```python
+def print_twice(items):
+    for item in items:
+        print(item)
+
+    for item in items:
+        print(item)
+```
+
+This is `O(2n)`, which simplifies to `O(n)`.
+
+The loops are separate, not nested.
+
+
 
 ### O(n log n) - Loglinear/Linearithmic Time
 
@@ -273,15 +339,16 @@ nested loop → O(n^2)
 ```
 The final answer of this code would be `O(n^2)` because of the nested loop. The O(n²) part grows the fastest, so it dominates the whole algorithm.
 
-## Common Big-O Patterns
 
-| Code Pattern | Likely Big-O |
-|---|---|
-| Accessing one item in a list | O(1) |
-| One loop through a list | O(n) |
-| Two separate loops through the same list | O(n) |
-| Loop inside a loop | O(n²) |
-| Three nested loops | O(n³) |
-| Repeatedly cutting the problem in half | O(log n) |
-| Efficient sorting algorithms | O(n log n) |
-| Trying every possible combination | Often O(2ⁿ) |
+## Big-O Quick Reference
+
+| Big-O | Growth Description | Common Pattern |
+|---|---|---|
+| `O(1)` | Does not grow with input | Access one item, fixed number of steps |
+| `O(log n)` | Grows very slowly | Repeatedly cut problem in half |
+| `O(n)` | Grows directly with input | One loop through input |
+| `O(n log n)` | Efficient divide-and-combine pattern | Merge sort-style algorithms |
+| `O(n²)` | Grows quickly | Nested loops over same input |
+| `O(n³)` | Grows very quickly | Three nested loops |
+| `O(2^n)` | Doubles with each extra input | Trying every yes/no combination |
+| `O(n!)` | Extremely fast growth | Trying every possible ordering |

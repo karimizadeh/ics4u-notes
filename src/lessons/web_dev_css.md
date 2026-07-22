@@ -22,6 +22,25 @@ body {
 }
 ```
 
+## Why CSS Matters
+
+Without CSS, most web pages would appear as plain text, images, and links stacked from top to bottom.
+
+CSS helps control:
+
+- colour,
+- fonts,
+- spacing,
+- page layout,
+- navigation menus,
+- cards and sections,
+- responsive design,
+- hover effects,
+- visual consistency across pages.
+
+CSS should support the HTML. Good CSS makes the content easier to read, use, and understand.
+
+
 ## Three Ways to Add CSS
 
 CSS can be added in three ways:
@@ -32,7 +51,7 @@ CSS can be added in three ways:
 | Internal | `<style>` inside HTML | Useful for quick testing |
 | External | Separate `.css` file | Best for this unit |
 
-Instead of writing styles inside each HTML file, we place styles in a separate `.css` file. Students should use **external CSS**.
+Instead of writing styles inside each HTML file, we place styles in a separate `.css` file. You should use **external CSS**.
 
 ```html
 <link rel="stylesheet" href="css/style.css">
@@ -44,9 +63,9 @@ Benefits of external CSS:
 - Keeps HTML cleaner
 - Makes the website easier to update
 - Allows one CSS file to style multiple pages
-- Helps students separate structure from design
+- Helps separate structure from design
 
-# The Cascade
+## The Cascade
 
 CSS is called “cascading” because multiple rules can apply to the same element.
 
@@ -57,7 +76,7 @@ General priority:
 3. External CSS
 4. Browser default style
 
-For this course, students should mostly use **external CSS**.
+You should mostly use **external CSS**.
 
 ## CSS Rule Structure
 
@@ -77,8 +96,8 @@ h1 {
 ```
 
 - `h1` is the selector.
-- `color` and `text-align` are properties.
-- `navy` and `center` are values.
+- `color` and `font-size` are properties.
+- `navy` and `18px` are values.
 
 This changes all h1 header text to navy and font-size to 18 pixels.
 
@@ -96,13 +115,18 @@ This changes all h1 header text to navy and font-size to 18 pixels.
 | `background-color` | Background colour |
 | `font-family` | Font choice |
 | `font-size` | Text size |
+| `font-weight` | Text thickness |
 | `text-align` | Text alignment |
+| `line-height` | Space between lines of text |
 | `width` | Element width |
+| `max-width` | Maximum width an element can grow to |
 | `height` | Element height |
 | `margin` | Space outside an element |
 | `padding` | Space inside an element |
 | `border` | Border around an element |
 | `border-radius` | Rounded corners |
+| `display` | Controls layout behaviour |
+| `gap` | Space between flex or grid items |
 
 ## Starter CSS File
 
@@ -119,7 +143,9 @@ body {
     color: #222222;
 }
 
-header, main, footer {
+header,
+main,
+footer {
     max-width: 1000px;
     margin: 0 auto;
     padding: 1rem;
@@ -220,6 +246,30 @@ button:hover {
 }
 ```
 
+Other useful pseudo-classes:
+
+| Pseudo-class | Meaning |
+|---|---|
+| `:hover` | Mouse is over the element |
+| `:focus` | Element is selected with keyboard or mouse |
+| `:active` | Element is currently being clicked |
+| `:visited` | Link has already been visited |
+| `:first-child` | Element is the first child of its parent |
+| `:last-child` | Element is the last child of its parent |
+
+### Focus Styles
+
+Do not remove focus outlines without replacing them. Focus styles help keyboard users know where they are on the page.
+
+```css
+a:focus,
+button:focus {
+    outline: 3px solid #ffbf47;
+}
+```
+
+
+
 ## Specificity
 
 When two CSS rules target the same element, the browser decides which rule wins. A simple way to explain specificity:
@@ -228,7 +278,7 @@ When two CSS rules target the same element, the browser decides which rule wins.
 inline style > id selector > class selector > element selector > browser default
 ```
 
-For this unit, students should avoid inline styles and rely mostly on classes.
+You should avoid inline styles and rely mostly on classes.
 
 ## Text Styling
 
@@ -243,6 +293,32 @@ p {
     line-height: 1.6;
 }
 ```
+
+Good text styling improves readability.
+
+Useful tips:
+
+- Use larger text for headings.
+- Keep paragraph line height comfortable.
+- Avoid using too many different fonts.
+- Use enough colour contrast between text and background.
+
+## Units in CSS
+
+CSS has several units.
+
+| Unit | Meaning | Common Use |
+|---|---|---|
+| `px` | Fixed pixels | Borders, small spacing, precise sizes |
+| `%` | Percentage of parent | Flexible widths |
+| `rem` | Relative to root font size | Spacing and font sizes |
+| `em` | Relative to current element font size | Component-specific spacing |
+| `vh` | Percentage of viewport height | Full-screen sections |
+| `vw` | Percentage of viewport width | Width based on browser size |
+
+`rem`, `%`, and `max-width` are often better than fixed pixel widths because they respond better to different screen sizes.
+
+
 
 ## Colour Formats
 
@@ -267,6 +343,9 @@ Common formats:
 - named colours, such as `blue`, `black`, `white`, `navy`
 - hexadecimal colours, such as `#ffffff`
 - RGB colours, such as `rgb(255, 255, 255)`
+- RGBA colours, such as `rgba(0, 0, 0, 0.5)`
+- HSL colours, such as `hsl(210, 80%, 40%)`
+
 
 ## The CSS Box Model
 
@@ -303,6 +382,18 @@ Use **padding** when you want space inside the box.
 
 Use **margin** when you want space between boxes.
 
+Example:
+
+```css
+.card {
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+```
+
+The text inside the card moves away from the edge because of padding. The card moves away from the next card because of margin.
+
+
 ## Shorthand
 
 CSS shorthand can reduce repeated code.
@@ -334,6 +425,36 @@ This means:
 
 This is often used to centre a block element.
 
+## Display
+
+The `display` property controls how an element behaves in the layout.
+
+| Display Value | Meaning |
+|---|---|
+| `block` | Starts on a new line and takes full available width |
+| `inline` | Stays in the same line and only takes needed width |
+| `inline-block` | Stays inline but allows width and height |
+| `flex` | Uses flexbox layout |
+| `grid` | Uses grid layout |
+| `none` | Hides the element completely |
+
+Examples:
+
+```css
+nav a {
+    display: inline-block;
+    padding: 0.75rem 1rem;
+}
+```
+
+```css
+.hidden {
+    display: none;
+}
+```
+
+
+
 ## Width and Max-Width
 
 ```css
@@ -345,6 +466,18 @@ main {
 ```
 
 This keeps content readable on large screens while still allowing it to shrink on smaller screens.
+
+Avoid setting large fixed widths like this:
+
+```css
+main {
+    width: 1000px;
+}
+```
+
+A fixed width can cause horizontal scrolling on small screens.
+
+
 
 ## Centering a Page
 
@@ -370,6 +503,48 @@ CSS:
 }
 ```
 `margin: 0 auto;` centers the container horizontally.
+
+## Flexbox Basics
+
+Flexbox is useful for arranging items in a row or column.
+
+```css
+.cards {
+    display: flex;
+    gap: 1rem;
+}
+```
+
+By default, flexbox places items in a row.
+
+Useful flexbox properties:
+
+| Property | Purpose |
+|---|---|
+| `display: flex` | Turns the element into a flex container |
+| `gap` | Adds space between flex items |
+| `flex-direction` | Sets row or column direction |
+| `justify-content` | Controls spacing along the main axis |
+| `align-items` | Controls alignment along the cross axis |
+| `flex-wrap` | Allows items to wrap onto a new line |
+| `flex` | Controls how much an item can grow or shrink |
+
+Example:
+
+```css
+.cards {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.card {
+    flex: 1 1 250px;
+}
+```
+
+This allows cards to sit beside each other when there is space and wrap when the screen is smaller.
+
 
 
 ## Basic Card Layout
@@ -408,6 +583,45 @@ CSS:
 }
 ```
 
+## CSS Grid Basics
+
+CSS Grid is useful for two-dimensional layouts, where you care about rows and columns.
+
+```css
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+}
+```
+
+This creates three equal columns.
+
+A more responsive version is:
+
+```css
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+}
+```
+
+This lets the browser create as many columns as will fit, with each item at least 200px wide.
+
+## Flexbox vs Grid
+
+| Use Flexbox When... | Use Grid When... |
+|---|---|
+| You are arranging items in one row or one column | You are arranging rows and columns |
+| You are spacing navigation links | You are building a gallery |
+| You want items to wrap naturally | You want a structured page layout |
+| The content size controls the layout | The layout structure controls the content |
+
+You can use flexbox for navigation and cards, and grid for galleries.
+
+
+
 ## Navigation with Lists
 
 Navigation menus are often written as lists of links.
@@ -444,7 +658,8 @@ nav a {
     border-radius: 6px;
 }
 
-nav a:hover {
+nav a:hover,
+nav a:focus {
     background-color: #555555;
 }
 ```
@@ -462,7 +677,7 @@ All pages in a website should have the same:
 
 ## Active Page Styling
 
-Students can add a class to show the current page.
+Add a class to show the current page.
 
 ```html
 <a class="active" href="projects.html">Projects</a>

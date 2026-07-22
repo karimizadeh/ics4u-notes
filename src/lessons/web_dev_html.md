@@ -52,27 +52,8 @@ Parts of a URL:
 | Domain | `example.com` | The server name |
 | Path | `/about.html` | The file or resource being requested |
 
-For local projects, students may open files directly or use a simple local server.
+For local projects, you may open files directly or use a simple local server.
 
-## HTML
-
-A website is made of files that are loaded by a web browser. The browser reads the files and displays the page for the user.
-
-Front-end web development focuses on what happens in the browser. The main front-end technologies are:
-
-| Technology | Role | Simple Description |
-|---|---|---|
-| HTML | Structure and content | What appears on the page |
-| CSS | Style and layout | How the page looks |
-| JavaScript | Behaviour and interactivity | What the page does |
-| DOM | Page representation | How JavaScript accesses and changes the page |
-
-A useful way to describe this is:
-
-- **HTML** is the skeleton.
-- **CSS** is the appearance.
-- **JavaScript** is the behaviour.
-- **The DOM** is the browser's live model of the page.
 
 ## Client and Server
 
@@ -83,13 +64,13 @@ Most websites use a client-server model.
 - The browser sends a request.
 - The server sends back files such as HTML, CSS, JavaScript, images, and data.
 
-For this unit, students will focus mainly on **client-side development**, meaning the code runs in the browser.
+For this unit, you will focus mainly on **client-side development**, meaning the code runs in the browser.
 
 ## Browser Developer Tools
 
-Students should learn early that errors are normal.
+You should learn early that errors are normal.
 
-Developer tools help students:
+Developer tools help you:
 
 - Inspect HTML
 - Test CSS changes
@@ -110,6 +91,18 @@ F12
 ```
 
 On many browsers, the console is found under the **Console** tab.
+
+### Useful Developer Tools Tabs
+
+| Tab | What It Helps With |
+|---|---|
+| Elements / Inspector | View and test HTML and CSS |
+| Console | See JavaScript messages and errors |
+| Network | Check whether files loaded correctly |
+| Sources | View loaded files |
+
+If an image, CSS file, or JavaScript file is not working, the Network tab can help students see whether the browser found the file.
+
 
 ## Folder Setup
 
@@ -181,6 +174,8 @@ console.log("JavaScript is connected.");
 
 HTML stands for **HyperText Markup Language**. It is used to define the structure and content of a web page.
 
+HTML is not a programming language because it does not use logic, loops, variables, or conditions by itself. It is a markup language because it marks up content and tells the browser what each piece of content means.
+
 HTML uses **elements**. Most elements have:
 
 - an opening tag,
@@ -208,6 +203,47 @@ Example:
 <img src="image.jpg" alt="Description of image">
 ```
 
+Other empty elements include:
+
+```html
+<br>
+<hr>
+<input type="text">
+<meta charset="UTF-8">
+<link rel="stylesheet" href="css/style.css">
+```
+
+## Nesting HTML Elements
+
+HTML elements can be placed inside other HTML elements. This is called **nesting**.
+
+```html
+<section>
+    <h2>About Me</h2>
+    <p>I am learning web development.</p>
+</section>
+```
+
+The `h2` and `p` elements are inside the `section` element.
+
+Good nesting makes HTML easier to read and debug.
+
+Incorrect nesting:
+
+```html
+<p>This is <strong>important.</p></strong>
+```
+
+Correct nesting:
+
+```html
+<p>This is <strong>important.</strong></p>
+```
+
+Tags should close in the reverse order that they opened.
+
+
+
 ## Basic HTML5 Template
 
 Every page should start with a proper HTML5 structure.
@@ -217,6 +253,7 @@ Every page should start with a proper HTML5 structure.
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Website</title>
     <link rel="stylesheet" href="css/style.css">
     <script src="js/script.js" defer></script>
@@ -242,6 +279,37 @@ Every page should start with a proper HTML5 structure.
 | `<script>` | Connects the JavaScript file |
 | `<body>` | Contains the visible page content |
 
+
+### Head vs Body
+
+The `<head>` contains information about the page that is mostly not visible directly on the page.
+
+The `<body>` contains the visible content.
+
+```html
+<head>
+    <title>Browser Tab Title</title>
+</head>
+<body>
+    <h1>Visible Page Heading</h1>
+</body>
+```
+
+## Connecting CSS and JavaScript
+
+CSS is connected with `<link>`:
+
+```html
+<link rel="stylesheet" href="css/style.css">
+```
+
+JavaScript is connected with `<script>`:
+
+```html
+<script src="js/script.js"></script>
+```
+The <link> and <script> elements connect the page to its external CSS and JavaScript files.
+
 ## Attributes
 
 Attributes provide extra information about an element.
@@ -256,7 +324,7 @@ In this example:
 
 - `a` is the tag
 - `href` is the attribute
-- `https://www.example.com` is the attribute value
+- `about.html` is the attribute value
 
 Another example:
 
@@ -276,10 +344,34 @@ Common attributes include:
 | `src` | File path for images or scripts |
 | `alt` | Text description for an image |
 | `title` | Extra tooltip information |
+| `target` | Controls where a link opens |
+| `rel` | Describes relationship between current page and linked page |
+| `name` | Form field name sent with form data |
+| `value` | Starting or submitted value for some form controls |
+
+## ID vs Class
+
+Both `id` and `class` can identify elements, but they are used differently.
+
+| Attribute | Use |
+|---|---|
+| `id` | One unique element on the page |
+| `class` | One or more elements that share a style or behaviour |
+
+Example:
+
+```html
+<section id="contact">
+    <p class="highlight">Email me for more information.</p>
+</section>
+```
+
+Use `id` for unique sections, such as `contact` or `top`. Use `class` for reusable styles, such as `highlight`, `card`, or `button`.
+
 
 ## Good HTML Habits
 
-Students should:
+You should:
 
 - use lowercase tag names,
 - close elements properly,
@@ -309,6 +401,18 @@ Use headings in order. Avoid jumping from `<h1>` directly to `<h4>` just because
 <p>This is a paragraph of text.</p>
 ```
 
+Paragraphs are for blocks of text. Do not use multiple `<br>` tags to create paragraph spacing. Use CSS for spacing.
+
+### Text Emphasis
+
+```html
+<p>This is <strong>important</strong>.</p>
+<p>This is <em>emphasized</em>.</p>
+```
+
+`strong` usually means important. `em` usually means emphasized. These are better than using tags only for appearance.
+
+
 ### Lists
 
 Unordered list:
@@ -331,6 +435,8 @@ Ordered list:
 </ol>
 ```
 
+Use an unordered list when order does not matter. Use an ordered list when the sequence matters.
+
 ### Hyperlinks
 
 Links are created using the `<a>` element.
@@ -341,7 +447,7 @@ Links are created using the `<a>` element.
 
 The `href` attribute tells the browser where to go.
 
-For a multi-page website, students should use relative links:
+For a multi-page website, you should use relative links:
 
 ```html
 <a href="index.html">Home</a>
@@ -402,6 +508,9 @@ Images use the `<img>` element. The `img` element is an empty element, meaning i
 |---|---|
 | `src` | Path to the image file |
 | `alt` | Text description of the image |
+| `width` | Optional display width |
+| `height` | Optional display height |
+
 
 ### Figures and Captions
 
@@ -439,6 +548,18 @@ Tables should be used for tabular data, not page layout.
     </tbody>
 </table>
 ```
+
+Important table elements:
+
+| Element | Purpose |
+|---|---|
+| `<table>` | Creates the table |
+| `<caption>` | Gives the table a title or description |
+| `<thead>` | Groups header rows |
+| `<tbody>` | Groups body rows |
+| `<tr>` | Table row |
+| `<th>` | Header cell |
+| `<td>` | Data cell |
 
 ## What is Semantic HTML?
 
@@ -516,7 +637,7 @@ Use semantic elements when possible. Use `div` and `span` when you need a generi
 
 ## Planning a Website
 
-Before coding, students should plan:
+Before coding, you should plan:
 
 - What is the purpose of the website?
 - Who is the audience?

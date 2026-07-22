@@ -29,7 +29,7 @@ def countdown(n):
 
 countdown(5) #Initial Function Call
 ```
-This code has no obvious errors. It will run perfectly fine, however, this function never stops. 
+This code is syntactically valid, so Python will begin running it. However, the function has no base case and will not stop calling itself.
 ```
 5
 4
@@ -76,10 +76,10 @@ countdown(1)
 countdown(0)
 ```
 
-When `n == 0`, the function stops called itself.
+When `n == 0`, the function stops calling itself.
 
 ## Tracing Recursive Calls (Call Stack)
-When a recursive function runs, Python places each `call` onto the `call stack`. The `call stack` has to remember each unfinished function calls.
+When a recursive function runs, Python places each `call` onto the `call stack`. The `call stack` remembers each function call that has started but has not yet finished.
 TLDR: The call stack keeps track of functions that are currently running but not finished yet. 
 
 example:

@@ -114,8 +114,6 @@ a = null;          // null
 |`let d = null;`         |`object`|`null`|
 
 
-console.log(website.title);
-
 ## Common JavaScript Operators
 
 |Operator | Operation | Example |
@@ -547,7 +545,7 @@ for (let i = 0; i < names.length; i++) {
 
 #### Mistake 3: Using `for...in` for arrays
 
-`for...in` loops through property names, not values. For beginner array work, use `for`, `for...of`, or array methods instead.
+`for...in` loops through property names, not values. For array work, use `for`, `for...of`, or array methods instead.
 
 ```javascript
 const colours = ["red", "green", "blue"];
@@ -635,7 +633,7 @@ const greetUser = (name) => {
 console.log(greetUser("Mitchell"));
 ```
 
-For this course, regular `function` syntax is easier when learning the basics. Arrow functions are still useful to recognize because examples online often use them.
+For this unit, regular `function` syntax is easier when learning the basics. Arrow functions are still useful to recognize because examples online often use them.
 
 
 ## Events
@@ -674,6 +672,60 @@ button.addEventListener("click", function () {
 ```
 
 This keeps HTML and JavaScript separate.
+
+## Forms and User Input
+
+Forms are one of the most common reasons to use JavaScript on a webpage.
+
+HTML:
+
+```html
+<form id="signupForm">
+    <label for="name">Name:</label>
+    <input id="name" type="text">
+
+    <label for="age">Age:</label>
+    <input id="age" type="number">
+
+    <button type="submit">Sign Up</button>
+</form>
+
+<p id="formMessage"></p>
+```
+
+JavaScript:
+
+```javascript
+const form = document.querySelector("#signupForm");
+const nameInput = document.querySelector("#name");
+const ageInput = document.querySelector("#age");
+const formMessage = document.querySelector("#formMessage");
+
+form.addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    const name = nameInput.value;
+    const age = Number(ageInput.value);
+
+    if (name === "") {
+        formMessage.textContent = "Name is required.";
+    } else if (age < 13) {
+        formMessage.textContent = "You must be at least 13.";
+    } else {
+        formMessage.textContent = "Thanks for signing up, " + name + "!";
+    }
+});
+```
+
+`event.preventDefault()` stops the form from refreshing the page immediately. This gives JavaScript a chance to check the input and display a message.
+
+Important form properties:
+
+| Property | Meaning |
+|---|---|
+| `.value` | The current value inside an input |
+| `.checked` | Whether a checkbox or radio button is selected |
+| `.textContent` | The plain text inside an element |
 
 
 ## Strings
@@ -806,7 +858,7 @@ const student = {
 
 ## What is the DOM?
 
-OM stands for **Document Object Model**.
+DOM stands for **Document Object Model**.
 
 When the browser loads an HTML page, it creates a live version of the page that JavaScript can access and change.
 
@@ -912,7 +964,7 @@ heading.textContent = "Welcome to My Website";
 
 Use `textContent` when inserting plain text.
 
-Use `innerHTML` only when you intentionally want to insert HTML. For beginners, `textContent` is usually safer.
+Use `innerHTML` only when you intentionally want to insert HTML. `textContent` is usually safer.
 
 ## Changing CSS with JavaScript
 
@@ -1052,3 +1104,80 @@ item.textContent = "Finish website homepage";
 
 list.appendChild(item);
 ```
+This is useful when a webpage needs to add new content based on user input.
+
+Example: Add a task from an input.
+
+HTML:
+
+```html
+<input id="taskInput" type="text">
+<button id="addTaskButton">Add Task</button>
+<ul id="taskList"></ul>
+```
+
+JavaScript:
+
+```javascript
+const taskInput = document.querySelector("#taskInput");
+const addTaskButton = document.querySelector("#addTaskButton");
+const taskList = document.querySelector("#taskList");
+
+addTaskButton.addEventListener("click", function () {
+    const taskText = taskInput.value;
+
+    if (taskText !== "") {
+        const item = document.createElement("li");
+        item.textContent = taskText;
+        taskList.appendChild(item);
+        taskInput.value = "";
+    }
+});
+```
+
+## Mini Example: Complete Interactive Page
+
+This example combines variables, conditionals, functions, events, DOM selection, and classes.
+
+HTML:
+
+```html
+<h1>Study Timer</h1>
+<input id="minutesInput" type="number" placeholder="Minutes">
+<button id="startButton">Start</button>
+<p id="timerMessage"></p>
+```
+
+CSS:
+
+```css
+.warning {
+    color: red;
+    font-weight: bold;
+}
+```
+
+JavaScript:
+
+```javascript
+const minutesInput = document.querySelector("#minutesInput");
+const startButton = document.querySelector("#startButton");
+const timerMessage = document.querySelector("#timerMessage");
+
+function createTimerMessage(minutes) {
+    return "Study for " + minutes + " minutes. Then take a short break.";
+}
+
+startButton.addEventListener("click", function () {
+    const minutes = Number(minutesInput.value);
+
+    if (minutes <= 0) {
+        timerMessage.textContent = "Please enter a valid number of minutes.";
+        timerMessage.classList.add("warning");
+    } else {
+        timerMessage.textContent = createTimerMessage(minutes);
+        timerMessage.classList.remove("warning");
+    }
+});
+```
+

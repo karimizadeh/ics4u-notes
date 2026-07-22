@@ -46,7 +46,7 @@ If the file is inside another folder, you need to include the folder name:
 open("data/students.txt", "r")
 ```
 
-A common beginner mistake is trying to open a file that is not in the same folder as the Python file.
+A common mistake is trying to open a file that is not in the same folder as the Python file.
 
 ## Relative and Absolute Paths
 
@@ -66,7 +66,7 @@ Example on Mac:
 open("/Users/student/Documents/students.txt", "r")
 ```
 
-For most beginner programs, it is easier to keep the data file in the same folder as the Python file.
+It is easier to keep the data file in the same folder as the Python file.
 
 ## Opening a File
 
@@ -116,18 +116,20 @@ Use `"w"` when you want to replace the file. Use `"a"` when you want to add to t
 To read a file, open it in read mode using `"r"`.
 
 ```python
-file = open("example.txt", "r")
-content = file.read()
-print(content)
-file.close()
+with open("example.txt", "r") as file:
+    content = file.read()
+    
+    print(content)
+
 ```
 
 ### What the Code Does
 
 1. Opens `example.txt` in read mode.
 2. Reads the entire file as one string.
-3. Prints the file contents.
-4. Closes the file.
+3. Closes the file automatically when the `with` block ends.
+4. Prints the file contents.
+
 
 ### Important Note
 
@@ -139,12 +141,10 @@ file.close()
 Sometimes you do not want the entire file at once. You may want to process one line at a time.
 
 ```python
-file = open("example.txt", "r")
+with open("example.txt", "r") as file:
+    for line in file:
+        print(line.strip())
 
-for line in file:
-    print(line.strip())
-
-file.close()
 ```
 
 ## Other Ways to Read a File
@@ -198,10 +198,9 @@ This makes the output cleaner.
 Writing means saving information into a file.
 
 ```python
-file = open("simple_example.txt", "w")
-file.write("Hello, this is a simple file example.\n")
-file.write("Writing and reading files in Python is useful.\n")
-file.close()
+with open("simple_example.txt", "w") as file:
+    file.write("Hello, this is a simple file example.\n")
+    file.write("Writing and reading files in Python is useful.\n")
 ```
 
 ### What the Code Does
@@ -209,7 +208,7 @@ file.close()
 1. Opens `simple_example.txt` in write mode.
 2. Writes the first line.
 3. Writes the second line.
-4. Closes the file.
+4. Closes the file automatically when the `with` block ends.
 
 ### Why Use `\n`?
 
@@ -242,102 +241,44 @@ Hello
 World
 ```
 
-## Reading Back What You Wrote
-
-A common pattern is to write data to a file, close it, then open it again to read the data back.
-
-```python
-file = open("simple_example.txt", "w")
-file.write("Hello, this is a simple file example.\n")
-file.write("Writing and reading files in Python is useful.\n")
-file.close()
-
-file = open("simple_example.txt", "r")
-content = file.read()
-print(content)
-file.close()
-```
-
-This helps confirm that the file was written correctly.
-
 ## Appending to a File
 
 Appending means adding new content to the end of a file without deleting what is already there.
 
 ```python
-file = open("journal.txt", "a")
-file.write("Today I learned about file handling.\n")
-file.close()
+with open("journal.txt", "a") as file:
+    file.write("Today I learned about file handling.\n")
 ```
 If the file already has content, the new line is added at the end.
 
 ### Example: Appending Multiple Lines
 
 ```python
-file = open("journal.txt", "a")
-file.write("This is the first line being appended.\n")
-file.write("Appending more content to the file.\n")
-file.close()
+with open("journal.txt", "a") as file:
+    file.write("This is the first line being appended.\n")
+    file.write("Appending more content to the file.\n")
 ```
 
 Then read the file:
 
 ```python
-file = open("journal.txt", "r")
+with open("journal.txt", "r") as file:
+    for line in file:
+        print(line.strip())
 
-for line in file:
-    print(line.strip())
-
-file.close()
 ```
 
-## The Problem with Forgetting to Close a File
+## Recommended File-Opening Pattern
 
-When you open a file, the computer reserves resources for it. If you forget to close the file, the program may still work sometimes, but it is not good practice.
-
-Forgetting to close files can cause problems such as:
-* data not being saved properly
-* files being locked by the program
-* wasted system resources
-* confusing bugs
-
-This is why Python programmers usually use the `with` statement.
-
-## Better Practice: Using `with open(...)`
-
-The `with` statement automatically closes the file when the block of code is finished.
-
-```python
-with open("myfile.txt", "r") as file:
-    content = file.read()
-    print(content)
-```
-
-You do not need to write:
-
-```python
-file.close()
-```
-
-Python handles it automatically.
-
-### Writing with `with open(...)`
+Use `with open(...)` whenever possible. It closes the file automatically, including when an error occurs inside the block.
 
 ```python
 with open("notes.txt", "w") as file:
-    file.write("This file was written using with open.\n")
-```
+    file.write("Study recursion\n")
 
-### Appending with `with open(...)`
-
-```python
 with open("notes.txt", "a") as file:
-    file.write("This line was added later.\n")
+    file.write("Practice file handling\n")
 ```
-
-### Recommended Habit
-
-For most beginner programs, use `with open(...)` instead of manually opening and closing files.
 
 ## Handling File Errors
 
@@ -522,75 +463,3 @@ with open("people.csv", "r") as file:
 ```
 
 `next(reader)` reads the first row before the loop starts. In this example, it stores the header row so the loop only processes the actual data.
-
-## Common Mistakes
-
-### Mistake 1: Forgetting the File Extension
-
-Wrong:
-
-```python
-open("students", "r")
-```
-
-Better:
-
-```python
-open("students.txt", "r")
-```
-
-Unless the file really has no extension, include `.txt`, `.csv`, or the correct file type.
-
-### Mistake 2: File Is in the Wrong Folder
-
-If Python says the file does not exist, check that the file is in the same folder as the Python program or use the correct path.
-
-### Mistake 3: Using Write Mode by Accident
-
-This erases the old file:
-
-```python
-open("scores.txt", "w")
-```
-
-Use append mode if you want to keep old data:
-
-```python
-open("scores.txt", "a")
-```
-
-### Mistake 4: Forgetting Newline Characters
-
-Wrong:
-
-```python
-file.write("First")
-file.write("Second")
-```
-
-Output:
-
-```text
-FirstSecond
-```
-
-Better:
-
-```python
-file.write("First\n")
-file.write("Second\n")
-```
-
-### Mistake 5: Not Converting Data Types
-
-Data read from a text file is usually a string.
-
-```python
-score = "85"
-```
-
-If you need to do math, convert it:
-
-```python
-score = int(score)
-```

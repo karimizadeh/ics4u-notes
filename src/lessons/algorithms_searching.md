@@ -29,6 +29,22 @@ Checking if an item exists in a game inventory
 ```
 The better the searching algorithm, the faster the program can find information.
 
+## Before Searching: What Are We Looking For?
+
+Before choosing a searching algorithm, identify the exact goal. A program might need to answer different questions:
+
+| Question | Possible Return Value | Example |
+|---|---|---|
+| Is the target there? | `True` or `False` | `contains(numbers, 42)` |
+| Where is the first match? | index or `-1` | `linear_search(numbers, 42)` |
+| Where are all matches? | list of indexes | `[1, 3, 5]` |
+| How many times does it appear? | count | `3` |
+| What object matches a condition? | item or `None` | a student record |
+
+The algorithm may look similar, but the `return` value changes depending on the question.
+
+For this lesson, `-1` usually means **not found** because valid Python list indexes start at `0`.
+
 
 ## Linear Search
 
@@ -148,7 +164,7 @@ This means the number of steps grows with the size of the list.
 
 **Binary search** is a faster searching algorithm that works by repeatedly cutting the search area in half.
 
-However, binary search only works if the list is already sorted.
+However, binary search only works if the list is already sorted. If the list is not sorted, the algorithm may throw away the half that actually contains the target.
 
 For example:
 
@@ -158,7 +174,6 @@ numbers = [3, 8, 12, 19, 25, 31, 42, 56]
 
 This list is sorted from smallest to largest.
 
-Binary search requires a sorted list.
 
 This works:
 
@@ -198,8 +213,24 @@ mid = (0 + 7) // 2
 
 Result: `3`
 
+## Binary Search Decision Pattern
 
-## Binary Search Walkthrough
+At each step, binary search asks three questions:
+
+1. Is the middle value the target?
+2. If not, is the middle value too small?
+3. If not, is the middle value too large?
+
+```text
+if middle value == target:
+    found
+elif middle value < target:
+    search right half
+else:
+    search left half
+```
+
+This only works because the list is sorted.
 
 Given:
 ```python
@@ -434,8 +465,6 @@ The worst-case time complexity of binary search is: `O(log n)`. This means the n
 | Easier to code? | Yes | Slightly harder |
 | Best for | Small or unsorted lists | Large sorted lists |
 
-
-### Comparing Step Counts
 
 | List Size | Linear Search Worst Case | Binary Search Worst Case |
 |---:|---:|---:|
