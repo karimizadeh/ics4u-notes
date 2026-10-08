@@ -70,6 +70,7 @@ target = 67
 for number in numbers:
     if number == target:
         print("Found")
+        break
 ```
 
 This checks each number in order:
