@@ -33,8 +33,8 @@ Key differences:
 |---|---|
 | `if mark >= 80:` | `if (mark >= 80) {` |
 | `elif` | `else if` |
-| indentation controls block | braces control block |
-| no semicolon after condition | semicolon after statements inside block |
+| condition has no parentheses | C-style if statement, requires parentheses |
+| colon and indentation denotes code block | curly braces denote code block |
 
 ### Common If Statement Mistake
 
@@ -63,7 +63,7 @@ if (mark >= 50) {
 | Meaning | Python | Java |
 |---|---|---|
 | and | `and` | `&&` |
-| or | `or` | <code>||</code> |
+| or | `or` | `\|\|` |
 | not | `not` | `!` |
 | equal to | `==` | `==` |
 | not equal to | `!=` | `!=` |
@@ -90,6 +90,7 @@ if (age >= 13 && age <= 19) {
 ### Boolean Expressions
 
 A boolean expression evaluates to `true` or `false`.
+Boolean values in Java are all lower case, as opposed to Python which capitalizes them.
 
 ```java
 int age = 17;
@@ -124,6 +125,11 @@ switch (day) {
 }
 ```
 
-Use `break` to stop the switch from continuing into the next case.
+The value of the expression in the parentheses after the `switch` keyword are compared against all cases.
+Cases are defined after the `case` keyword within a switch statement.
+When a matching case is found, all the code underneath the case will begin to run.
+Use `break` to stop the switch from continuing into the next case, skipping to the end of the switch statement.
+If no `break` is encountered, execution can continue past any subsequent `case` declarations and run those code blocks.
+The `default` case is optional and will run when no other case matches.
 
-`if`, `else if`, and `else` are usually enough, but `switch` is useful to recognize.
+The general syntax for `if`, `else if`, and `else` are similar enough to Python, but the `switch` statement should be new and useful to recognize.
