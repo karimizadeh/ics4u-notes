@@ -1,4 +1,4 @@
-## Arrays in Java
+# Arrays in Java
 
 Python lists are flexible:
 

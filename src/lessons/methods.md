@@ -1,4 +1,4 @@
-## Methods (Java Functions)
+# Methods (Java Functions)
 
 Methods in Java are similar to functions in Python.
 

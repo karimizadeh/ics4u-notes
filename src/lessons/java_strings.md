@@ -1,4 +1,4 @@
-## Strings in Java
+# Strings in Java
 
 Strings in Java use `String` with a capital `S`.
 
