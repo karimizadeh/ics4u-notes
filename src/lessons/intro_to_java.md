@@ -4,7 +4,8 @@ Python and Java can solve the same problems, but they look and behave differentl
 
 ## How to Install and use Java
 
-[Click the link to learn how to get Java working on your device: ](https://www.geeksforgeeks.org/linux-unix/download-install-java-windows-linux-macos/)
+[Click here to learn how to get Java working on your device.](https://www.geeksforgeeks.org/linux-unix/download-install-java-windows-linux-macos/)
+
 
 # Learning Java
 
