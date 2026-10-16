@@ -1,6 +1,12 @@
-# Learning Java
+# Intro to Java
 
 Python and Java can solve the same problems, but they look and behave differently.
+
+## How to Install and use Java
+
+[Click the link to learn how to get Java working on your device: ](https://www.geeksforgeeks.org/linux-unix/download-install-java-windows-linux-macos/)
+
+# Learning Java
 
 Python is more flexible and forgiving. Java is more strict and requires more structure.
 

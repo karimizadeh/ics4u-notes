@@ -123,12 +123,12 @@ with open("example.txt", "r") as file:
 
 ```
 
-### What the Code Does
+What the Code Does:
 
 1. Opens `example.txt` in read mode.
 2. Reads the entire file as one string.
-3. Closes the file automatically when the `with` block ends.
-4. Prints the file contents.
+3. Prints the file contents.
+4. Closes the file automatically when the with block ends.
 
 
 ### Important Note

@@ -13,7 +13,7 @@
 [](lessons/java_loops.md)
 [](lessons/methods.md)
 [](lessons/java_arrays.md)
-[](lessons/java_strings.md)
+<!-- [](lessons/java_strings.md) -->
 [](lessons/oop.md)
 [](lessons/linked_lists.md)
 [](lessons/web_dev_html.md)
