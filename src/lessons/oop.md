@@ -14,14 +14,16 @@ For example, in a school system, we might have objects such as:
 Each object can have:
 
 1. **attributes** - Information the object stores.
-2. **methods** - Actions the object can perform.
+1. **methods** - Actions the object can perform.
 
 For example, a `Student` object might store:
+
 - name
 - grade
 - average
 
 and it might have actions such as:
+
 - display information
 - update average
 - check if passing
@@ -69,7 +71,7 @@ However, this version is incomplete because we have not written a constructor ye
 
 ## Instance Variables
 
-Variables inside a class are called **instance variables** or **fields**.
+Variables inside a class are called **instance variables** or **fields** in Java.
 
 ```java
 private String name;
@@ -88,6 +90,11 @@ Student s2 = new Student("William", 11, 74.0);
 
 `s1` and `s2` are both `Student` objects, but they store different data.
 
+## Visibility
+
+The `private` keyword is used to mark fields and methods as inaccessible from outside an object or class.
+This means that other classes won't be able to call or reference `private` data or methods.
+The `public` keyword is the opposite of that, allowing anyone to access the field or method.
 
 ## Constructors
 
@@ -118,7 +125,6 @@ Student s2 = new Student("William", 11, 74.0);
 
 The constructor lets us create a complete object in one line.
 
-
 ## The `this` Keyword
 
 The keyword `this` refers to the current object.
@@ -140,7 +146,6 @@ this.name = name;
 `name` means the parameter passed into the constructor.
 
 This is useful when the parameter and instance variable have the same name.
-
 
 ## Methods
 
@@ -194,12 +199,12 @@ s1.average = 150;
 
 Instead, we use methods to control how the data is accessed or changed.
 
-
 ## Getters and Setters
 
-A **getter** returns the value of a private variable.
+A **getter** returns the value of an instance variable.
+A **setter** changes the value of an instance variable.
 
-A **setter** changes the value of a private variable.
+These are usually used for private instance variables to protect their data.
 
 ```java
 public double getAverage() {
@@ -231,7 +236,6 @@ will not change the average.
 
 This is one of the main benefits of encapsulation.
 
-
 ## The `toString()` Method
 
 The `toString()` method controls how an object is displayed as text.
@@ -257,7 +261,6 @@ Mitchell | Grade: 12 | Average: 86.5
 ```
 
 Without a custom `toString()` method, Java prints a less useful memory-style value.
-
 
 ## Complete Student Class
 
@@ -360,7 +363,6 @@ Output:
 
 This matters because linked lists are built using object references.
 
-
 ## `null`
 
 A reference can also be `null`.
@@ -380,7 +382,6 @@ System.out.println(s1.getName());
 Java will produce a `NullPointerException`.
 
 This means the program tried to use an object, but the reference was pointing to nothing.
-
 
 ## Another Class Example: Course
 
@@ -434,7 +435,6 @@ ICS4U: Computer Science with Ms. Marie
 
 This shows that each class represents one meaningful part of the program.
 
-
 ## Classes Working Together
 
 Objects can also store other objects.
@@ -475,7 +475,6 @@ Mitchell is in grade 12 and is taking ICS4U: Computer Science with Ms. Marie
 ```
 
 This is important because OOP programs are usually made of multiple objects working together.
-
 
 ## Inheritance
 
